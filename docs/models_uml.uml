@@ -1,0 +1,90 @@
+@startuml
+' Main classes
+class Customer {
+  id
+  email
+  first_name
+  last_name
+  is_active
+  created_at
+  last_updated
+}
+
+class CustomerGroup {
+  id
+  name
+  description
+  created_at
+  updated_at
+  members
+}
+
+class Campaign {
+  id
+  name
+  description
+  start_date
+  end_date
+  is_active
+  discount_target
+  discount_value
+  discount_type
+  min_cart_value
+  max_discount_amount
+  total_budget
+  max_uses_per_customer
+  max_uses_total
+  created_at
+  updated_at
+}
+
+class CampaignUsage {
+  idempotent_key
+  used_at
+  discount_amount
+}
+
+class CampaignRules {
+  campaign
+  payment_rules
+  location_rules
+  priority_rules
+  min_cart_rule
+}
+
+class PaymentMethodRule {
+  name
+  methods
+  created_at
+}
+
+class LocationTierRule {
+  name
+  tiers
+  created_at
+}
+
+class UserPriorityRule {
+  name
+  priorities
+  created_at
+}
+
+class MinCartValueRule {
+  name
+  min_value
+  max_discount
+  created_at
+}
+
+' Simple relationships
+Customer <--> CustomerGroup
+Campaign --> CustomerGroup
+Campaign --> CampaignRules
+CampaignRules --> PaymentMethodRule
+CampaignRules --> LocationTierRule
+CampaignRules --> UserPriorityRule
+CampaignRules --> MinCartValueRule
+Campaign <-- CampaignUsage
+Customer <-- CampaignUsage
+@enduml

@@ -1,0 +1,1471 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "CMS API",
+      "version": "v1"
+    },
+    "host": "127.0.0.1:8000",
+    "schemes": [
+      "http"
+    ],
+    "basePath": "/cms",
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "securityDefinitions": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY"
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": []
+      }
+    ],
+    "paths": {
+      "/apply-discount/": {
+        "post": {
+          "operationId": "apply-discount_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/DiscountRequest"
+              }
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "Accepted: Discount applied successfully."
+            },
+            "200": {
+              "description": "Duplicate: Discount already applied with this idempotent key."
+            },
+            "400": {
+              "description": "Rejected: Validation failed or campaign limits exceeded."
+            }
+          },
+          "tags": [
+            "apply-discount"
+          ]
+        },
+        "parameters": []
+      },
+      "/campaign-rules/": {
+        "get": {
+          "operationId": "campaign-rules_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/CampaignRules"
+                }
+              }
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "post": {
+          "operationId": "campaign-rules_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "parameters": []
+      },
+      "/campaign-rules/{id}/": {
+        "get": {
+          "operationId": "campaign-rules_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "put": {
+          "operationId": "campaign-rules_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "patch": {
+          "operationId": "campaign-rules_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CampaignRules"
+              }
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "delete": {
+          "operationId": "campaign-rules_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "campaign-rules"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique integer value identifying this campaign rules.",
+            "required": true,
+            "type": "integer"
+          }
+        ]
+      },
+      "/campaigns/": {
+        "get": {
+          "operationId": "campaigns_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Campaign"
+                }
+              }
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "post": {
+          "operationId": "campaigns_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "parameters": []
+      },
+      "/campaigns/{id}/": {
+        "get": {
+          "operationId": "campaigns_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "put": {
+          "operationId": "campaigns_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "patch": {
+          "operationId": "campaigns_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/Campaign"
+              }
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "delete": {
+          "operationId": "campaigns_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "campaigns"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A UUID string identifying this campaign.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ]
+      },
+      "/eligible-campaigns/": {
+        "get": {
+          "operationId": "eligible-campaigns_list",
+          "description": "",
+          "parameters": [
+            {
+              "name": "user_id",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "name": "cart_value",
+              "in": "query",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "delivery_fee",
+              "in": "query",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "name": "payment_method",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "CC",
+                "DC",
+                "UPI",
+                "COD"
+              ]
+            },
+            {
+              "name": "user_priority",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "enum": [1, 2, 3]
+            },
+            {
+              "name": "location_tier",
+              "in": "query",
+              "required": false,
+              "type": "string",
+              "enum": [
+                "TIER1",
+                "TIER2",
+                "TIER3"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/CampaignResponse"
+                }
+              }
+            }
+          },
+          "tags": [
+            "eligible-campaigns"
+          ]
+        },
+        "parameters": []
+      },
+      "/groups/": {
+        "get": {
+          "operationId": "groups_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/CustomerGroup"
+                }
+              }
+            }
+          },
+          "tags": [
+            "groups"
+          ]
+        },
+        "parameters": []
+      },
+      "/groups/{id}/": {
+        "get": {
+          "operationId": "groups_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/CustomerGroup"
+              }
+            }
+          },
+          "tags": [
+            "groups"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A UUID string identifying this customer group.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ]
+      },
+      "/location-rules/": {
+        "get": {
+          "operationId": "location-rules_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/LocationTierRule"
+                }
+              }
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "post": {
+          "operationId": "location-rules_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "parameters": []
+      },
+      "/location-rules/{id}/": {
+        "get": {
+          "operationId": "location-rules_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "put": {
+          "operationId": "location-rules_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "patch": {
+          "operationId": "location-rules_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/LocationTierRule"
+              }
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "delete": {
+          "operationId": "location-rules_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "location-rules"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique integer value identifying this location tier rule.",
+            "required": true,
+            "type": "integer"
+          }
+        ]
+      },
+      "/min-cart-rules/": {
+        "get": {
+          "operationId": "min-cart-rules_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/MinCartValueRule"
+                }
+              }
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "post": {
+          "operationId": "min-cart-rules_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "parameters": []
+      },
+      "/min-cart-rules/{id}/": {
+        "get": {
+          "operationId": "min-cart-rules_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "put": {
+          "operationId": "min-cart-rules_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "patch": {
+          "operationId": "min-cart-rules_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/MinCartValueRule"
+              }
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "delete": {
+          "operationId": "min-cart-rules_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "min-cart-rules"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique integer value identifying this min cart value rule.",
+            "required": true,
+            "type": "integer"
+          }
+        ]
+      },
+      "/payment-rules/": {
+        "get": {
+          "operationId": "payment-rules_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/PaymentMethodRule"
+                }
+              }
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "post": {
+          "operationId": "payment-rules_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "parameters": []
+      },
+      "/payment-rules/{id}/": {
+        "get": {
+          "operationId": "payment-rules_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "put": {
+          "operationId": "payment-rules_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "patch": {
+          "operationId": "payment-rules_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/PaymentMethodRule"
+              }
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "delete": {
+          "operationId": "payment-rules_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "payment-rules"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique integer value identifying this payment method rule.",
+            "required": true,
+            "type": "integer"
+          }
+        ]
+      },
+      "/priority-rules/": {
+        "get": {
+          "operationId": "priority-rules_list",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/UserPriorityRule"
+                }
+              }
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "post": {
+          "operationId": "priority-rules_create",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "parameters": []
+      },
+      "/priority-rules/{id}/": {
+        "get": {
+          "operationId": "priority-rules_read",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "put": {
+          "operationId": "priority-rules_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "patch": {
+          "operationId": "priority-rules_partial_update",
+          "description": "",
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "schema": {
+                "$ref": "#/definitions/UserPriorityRule"
+              }
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "delete": {
+          "operationId": "priority-rules_delete",
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "tags": [
+            "priority-rules"
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "A unique integer value identifying this user priority rule.",
+            "required": true,
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    "definitions": {
+      "DiscountRequest": {
+        "required": [
+          "customer_id",
+          "idempotent_key",
+          "discount",
+          "campaign_id"
+        ],
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "title": "Customer id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "idempotent_key": {
+            "title": "Idempotent key",
+            "type": "string",
+            "format": "uuid"
+          },
+          "discount": {
+            "title": "Discount",
+            "type": "number"
+          },
+          "campaign_id": {
+            "title": "Campaign id",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CampaignRules": {
+        "required": [
+          "campaign"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "payment_rules": {
+            "title": "Payment rules",
+            "type": "integer",
+            "x-nullable": true
+          },
+          "location_rules": {
+            "title": "Location rules",
+            "type": "integer",
+            "x-nullable": true
+          },
+          "priority_rules": {
+            "title": "Priority rules",
+            "type": "integer",
+            "x-nullable": true
+          },
+          "min_cart_rule": {
+            "title": "Min cart rule",
+            "type": "integer",
+            "x-nullable": true
+          },
+          "campaign": {
+            "title": "Associated Campaign",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "PaymentMethodRule": {
+        "required": [
+          "name",
+          "methods"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "methods": {
+            "type": "array",
+            "items": {
+              "title": "Methods",
+              "type": "string",
+              "enum": [
+                "CC",
+                "DC",
+                "UPI",
+                "COD"
+              ]
+            }
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
+      "LocationTierRule": {
+        "required": [
+          "name",
+          "tiers"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "tiers": {
+            "type": "array",
+            "items": {
+              "title": "Tiers",
+              "type": "string",
+              "enum": [
+                "TIER1",
+                "TIER2",
+                "TIER3"
+              ]
+            }
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
+      "UserPriorityRule": {
+        "required": [
+          "name",
+          "priorities"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "priorities": {
+            "type": "array",
+            "items": {
+              "title": "Priorities",
+              "type": "integer",
+              "enum": [1, 2, 3]
+            }
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
+      "MinCartValueRule": {
+        "required": [
+          "name",
+          "min_value",
+          "max_discount"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "min_value": {
+            "title": "Min value",
+            "type": "number"
+          },
+          "max_discount": {
+            "title": "Max discount",
+            "type": "number"
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      },
+      "CampaignRulesReadOnly": {
+        "required": [
+          "campaign"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID",
+            "type": "integer",
+            "readOnly": true
+          },
+          "payment_rules": {
+            "$ref": "#/definitions/PaymentMethodRule"
+          },
+          "location_rules": {
+            "$ref": "#/definitions/LocationTierRule"
+          },
+          "priority_rules": {
+            "$ref": "#/definitions/UserPriorityRule"
+          },
+          "min_cart_rule": {
+            "$ref": "#/definitions/MinCartValueRule"
+          },
+          "campaign": {
+            "title": "Associated Campaign",
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Campaign": {
+        "required": [
+          "name",
+          "description",
+          "start_date",
+          "end_date",
+          "discount_target",
+          "discount_value",
+          "discount_type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "rules": {
+            "$ref": "#/definitions/CampaignRulesReadOnly"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1
+          },
+          "description": {
+            "title": "Description",
+            "type": "string",
+            "minLength": 1
+          },
+          "start_date": {
+            "title": "Start date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_date": {
+            "title": "End date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "is_active": {
+            "title": "Is active",
+            "type": "boolean"
+          },
+          "discount_target": {
+            "title": "Discount target",
+            "type": "string",
+            "enum": [
+              "CART",
+              "DELIVERY"
+            ]
+          },
+          "discount_value": {
+            "title": "Discount value",
+            "type": "number",
+            "minimum": 0
+          },
+          "discount_type": {
+            "title": "Discount type",
+            "type": "string",
+            "enum": [
+              "PERCENTAGE",
+              "FIXED"
+            ]
+          },
+          "min_cart_value": {
+            "title": "Min cart value",
+            "type": "number",
+            "minimum": 0,
+            "x-nullable": true
+          },
+          "max_discount_amount": {
+            "title": "Max discount amount",
+            "type": "number",
+            "minimum": 0,
+            "x-nullable": true
+          },
+          "total_budget": {
+            "title": "Total budget",
+            "type": "number",
+            "minimum": 0,
+            "x-nullable": true
+          },
+          "max_uses_per_customer": {
+            "title": "Max uses per customer",
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "x-nullable": true
+          },
+          "max_uses_total": {
+            "title": "Max uses total",
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "x-nullable": true
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updated_at": {
+            "title": "Updated at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "target_groups": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "CampaignResponse": {
+        "required": [
+          "id",
+          "name",
+          "discount_value",
+          "discount_type",
+          "discount_target",
+          "max_discount_amount"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1
+          },
+          "discount_value": {
+            "title": "Discount value",
+            "type": "number"
+          },
+          "discount_type": {
+            "title": "Discount type",
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1
+          },
+          "discount_target": {
+            "title": "Discount target",
+            "type": "string",
+            "maxLength": 50,
+            "minLength": 1
+          },
+          "max_discount_amount": {
+            "title": "Max discount amount",
+            "type": "number"
+          }
+        }
+      },
+      "CustomerGroup": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "member_count": {
+            "title": "Member count",
+            "type": "string",
+            "readOnly": true
+          },
+          "members": {
+            "description": "List of customer IDs in this group",
+            "type": "array",
+            "items": {
+              "description": "List of customer IDs in this group",
+              "type": "string",
+              "format": "uuid"
+            },
+            "readOnly": true,
+            "uniqueItems": true
+          },
+          "name": {
+            "title": "Name",
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "created_at": {
+            "title": "Created at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updated_at": {
+            "title": "Updated at",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        }
+      }
+    }
+  }
